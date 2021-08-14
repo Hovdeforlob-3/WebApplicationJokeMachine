@@ -30,23 +30,23 @@ namespace WebApplicationJokeMachine
 
 
                 new Joke(14, "dad joke", "Hvorfor skulle skyen i skole? – Fordi den skulle lære at regne", "dk"),
-                new Joke(14, "dad joke", "Hvad er det mindst talte sprog i verden?  – Tegnsprog", "dk"),
-                new Joke(14, "dad joke", "Why don't crabs give to charity? Because they're shellfish.", "en"),
-                new Joke(14, "dad joke", "What do you call 50 pigs and 50 deer? 100 sows and bucks", "en"),
+                new Joke(15, "dad joke", "Hvad er det mindst talte sprog i verden?  – Tegnsprog", "dk"),
+                new Joke(16, "dad joke", "Why don't crabs give to charity? Because they're shellfish.", "en"),
+                new Joke(17, "dad joke", "What do you call 50 pigs and 50 deer? 100 sows and bucks", "en"),
             });
             return badJoke;
         }
 
-        public List<string> dadJokes = new List<string>
-        {
-            "Hvorfor skulle skyen i skole? – Fordi den skulle lære at regne",
-            "Hvad er det mindst talte sprog i verden? – Tegnsprog"
-        };
+        //public List<string> dadJokes = new List<string>
+        //{
+        //    "Hvorfor skulle skyen i skole? – Fordi den skulle lære at regne",
+        //    "Hvad er det mindst talte sprog i verden? – Tegnsprog"
+        //};
 
-        public List<string> goodJokes = new List<string>
-        {
-            "Hvorfor (gå) over for grønt?   Når man kan blive (kørt) over for rødt?",
-            "Hvorfor sad appelsinen og pæren alene i mørket? – Fordi pæren var gået"
-        };
+        //public List<string> goodJokes = new List<string>
+        //{
+        //    "Hvorfor (gå) over for grønt?   Når man kan blive (kørt) over for rødt?",
+        //    "Hvorfor sad appelsinen og pæren alene i mørket? – Fordi pæren var gået"
+        //};
     }
 }

@@ -13,6 +13,20 @@ namespace WebApplicationJokeMachine
             return DalManager.Jokes();
         }
 
+
+        public List<string> ListOfCat()
+        {
+            var lstOfJokes = DalManager.Jokes();
+            var lstOfAllCat = new List<string>();
+
+            foreach (var item in lstOfJokes)
+            {
+                lstOfAllCat.Add(item.Type);
+            }
+            
+            return lstOfAllCat.Distinct().ToList();
+        }
+
         public List<Joke> ConmpareJokes(List<Joke> sessionUsedJokes, bool checkSession)
         {
             List<Joke> fullListOfJokes = Jokes();
@@ -74,6 +88,22 @@ namespace WebApplicationJokeMachine
             else if (headerValue == "en")
             {
                 sort = listOfJokes.Where(o => o.Language == "en").ToList();
+            }
+            else
+            {
+                sort = listOfJokes;
+            }
+            return sort;
+        }
+
+        public List<Joke> SortCatgaroi(List<Joke> listOfJokes, string userCat)
+        {
+            List<Joke> sort = new List<Joke>();
+
+
+            if (userCat != null)
+            {
+                sort = listOfJokes.Where(o => o.Type == userCat).ToList();
             }
             else
             {

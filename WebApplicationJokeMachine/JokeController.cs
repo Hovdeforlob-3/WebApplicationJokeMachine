@@ -12,40 +12,89 @@ namespace WebApplicationJokeMachine
     [ApiController]
     public class JokeController : ControllerBase
     {
+        JokeManager jokeManager = new JokeManager();
 
         // GET: api/<JokeController>
         [HttpGet]
-        public List<Joke> Get()
+        public List<string> Get(string cat)
         {
-            JokeManager jokeManager = new JokeManager();
-            List<Joke> pullUsedJoksFromSession = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes");
+            #region old
+            //List<Joke> pullUsedJoksFromSession = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes");
+
+            //var sessionListStat = jokeManager.CheckListFromItems(pullUsedJoksFromSession);
+            //Random rng = new Random();
+
+            //Response.Headers.Add("pref_language", "dk");
+            //List<Joke> getJokeFrom = jokeManager.ConmpareJokes(pullUsedJoksFromSession, sessionListStat);
+            ///*List<Joke>*/ sortedJokes = jokeManager.SortJokes(getJokeFrom, Response.Headers.Values.FirstOrDefault().ToString());
+
+            //var nextJoke = sortedJokes[rng.Next(sortedJokes.Count)];
+
+
+            //if (HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes") == null)
+            //{
+            //    pullUsedJoksFromSession = new List<Joke>();
+            //    pullUsedJoksFromSession.Add(nextJoke);
+            //    HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
+            //}
+            //else
+            //{
+            //    pullUsedJoksFromSession.Add(nextJoke);
+            //    HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
+            //}
+
+
+            //HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
+            //var ff = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes");
+            //return pullUsedJoksFromSession;
+            #endregion
+
+            if (cat != null)
+            {
+                Response.Cookies.Append("catgori", cat);
+            }
+
+            return jokeManager.ListOfCat();
+        }
+
+        [HttpGet]
+        [Route("joke")]
+        public List<Joke> GetJokes()
+        {
+            List<Joke> pullUsedJoksFromSession = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes"); // input
 
             var sessionListStat = jokeManager.CheckListFromItems(pullUsedJoksFromSession);
             Random rng = new Random();
 
-            Response.Headers.Add("pref_language", "en");
+            Response.Headers.Add("pref_language", "dk"); //output
             List<Joke> getJokeFrom = jokeManager.ConmpareJokes(pullUsedJoksFromSession, sessionListStat);
-            List<Joke> sortedJokes = jokeManager.SortJokes(getJokeFrom, Response.Headers.Values.FirstOrDefault().ToString());
-
-            var nextJoke = sortedJokes[rng.Next(sortedJokes.Count)];
+            List<Joke> sortedJokes = jokeManager.SortJokes(getJokeFrom, Response.Headers.Values.FirstOrDefault().ToString()); // input
 
 
-            if (HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes") == null)
+            //var fsdfe = Request.Cookies["catgori"];
+            List<Joke> gg = jokeManager.SortCatgaroi(sortedJokes, Request.Cookies["catgori"]); //input
+            var nextJoke = gg[rng.Next(gg.Count)];
+
+
+
+            if (HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes") == null) //input
             {
                 pullUsedJoksFromSession = new List<Joke>();
                 pullUsedJoksFromSession.Add(nextJoke);
-                HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
+                HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession); //output
             }
             else
             {
                 pullUsedJoksFromSession.Add(nextJoke);
-                HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
+                HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession); //output
             }
 
 
-            HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession);
-            var ff = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes");
+            HttpContext.Session.SetObjectAsJson("usedJokes", pullUsedJoksFromSession); //output
+            var ff = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes"); // input
             return pullUsedJoksFromSession;
+
+
         }
     }
 }
