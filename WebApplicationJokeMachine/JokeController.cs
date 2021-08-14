@@ -54,13 +54,17 @@ namespace WebApplicationJokeMachine
                 Response.Cookies.Append("catgori", cat);
             }
 
+            //Response.Headers.Add("Apikey", "mykey");
+
             return jokeManager.ListOfCat();
         }
 
         [HttpGet]
         [Route("joke")]
+        [ApiKeyAuth]
         public List<Joke> GetJokes()
         {
+            //Response.Headers.Add("Apikey", "mykey");
             List<Joke> pullUsedJoksFromSession = HttpContext.Session.GetObjectFromJson<List<Joke>>("usedJokes"); // input
 
             var sessionListStat = jokeManager.CheckListFromItems(pullUsedJoksFromSession);
