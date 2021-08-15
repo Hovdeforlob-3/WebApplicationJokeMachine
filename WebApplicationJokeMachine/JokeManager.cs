@@ -13,7 +13,6 @@ namespace WebApplicationJokeMachine
             return DalManager.Jokes();
         }
 
-
         public List<string> ListOfCat()
         {
             var lstOfJokes = DalManager.Jokes();
@@ -110,6 +109,45 @@ namespace WebApplicationJokeMachine
                 sort = listOfJokes;
             }
             return sort;
+        }
+
+        /// <summary>
+        /// dk er serveren defult hvis der kommer nogen der har et andet sprog 
+        /// som ikke er en del de sprog der bliver under støttet 
+        /// </summary>
+        /// <param name="headerValue"></param>
+        /// <returns></returns>
+        public string VaildtLanguage(string headerValue)
+        {
+            if (headerValue != "dk" || headerValue != "en")
+            {
+               return "dk";
+            }
+            else
+            {
+                return headerValue;
+            }
+        }
+
+        /// <summary>
+        /// Cheaker på om der er nogen på session list i forvejen 
+        /// </summary>
+        /// <param name="usedJokes"></param>
+        /// <param name="nextJoke"></param>
+        /// <returns></returns>
+        public List<Joke> SetJsonValueInSession(List<Joke> usedJokes, Joke nextJoke)
+        {
+            if (usedJokes == null)
+            {
+                usedJokes = new List<Joke>();
+                usedJokes.Add(nextJoke);
+            }
+            else
+            {
+                usedJokes.Add(nextJoke);
+            }
+
+            return usedJokes;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WebApplicationJokeMachine
             List<Joke> badJoke = new List<Joke>();
             badJoke.AddRange(new List<Joke>
             {
-                new Joke(1, "bad joke","Hvad kalder man røvhullet på et egern? – En nødudgang", "dk"),
+                new Joke(1, "bad joke", "Hvad kalder man røvhullet på et egern? – En nødudgang", "dk"),
                 new Joke(2, "bad joke", "Jeg overvejer at gifte mig med en tysker er det over grænsen?", "dk"),
                 new Joke(3, "bad joke", "Hvorfor går Bornholmer altid rundt med en saks i lommen? – Fordi det er en klippeø", "dk"),
                 new Joke(4, "bad joke", "Hvordan får man en fisk til at grine? – Man putter den i kildevand", "dk" ),
@@ -36,17 +36,5 @@ namespace WebApplicationJokeMachine
             });
             return badJoke;
         }
-
-        //public List<string> dadJokes = new List<string>
-        //{
-        //    "Hvorfor skulle skyen i skole? – Fordi den skulle lære at regne",
-        //    "Hvad er det mindst talte sprog i verden? – Tegnsprog"
-        //};
-
-        //public List<string> goodJokes = new List<string>
-        //{
-        //    "Hvorfor (gå) over for grønt?   Når man kan blive (kørt) over for rødt?",
-        //    "Hvorfor sad appelsinen og pæren alene i mørket? – Fordi pæren var gået"
-        //};
     }
 }
